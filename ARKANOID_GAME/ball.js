@@ -67,7 +67,6 @@ class Ball {
         }
         
         // 2. Reversa Y en el techo (Límite: 60)
-        // ⚠️ ESTA PARTE FALTABA EN TU CÓDIGO ANTERIOR ⚠️
         if (this.y - this.radius < 60) {
             this.velocity.y = -this.velocity.y;
             
@@ -115,7 +114,7 @@ class Ball {
         this.velocity.x = 0;
         this.velocity.y = 0;
         
-        // 💡 AJUSTE CRÍTICO: Aseguramos que está lista para ser lanzada 💡
+        // AJUSTE CRÍTICO: Aseguramos que está lista para ser lanzada 
         this.isStuck = true; 
     }
 }

@@ -14,7 +14,6 @@ class SoundManager {
     loadSounds(soundMap) {
         this.totalSounds = Object.keys(soundMap).length;
 
-        // ⚠️ DEVOLVER UNA PROMESA ⚠️
         return new Promise((resolve) => {
             if (this.totalSounds === 0) {
                 resolve();
@@ -28,7 +27,7 @@ class SoundManager {
                     audio.oncanplaythrough = () => {
                         this.loadedCount++;
                         if (this.loadedCount === this.totalSounds) {
-                            resolve(); // ¡Todos cargados!
+                            resolve(); 
                         }
                     };
 

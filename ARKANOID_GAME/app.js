@@ -81,7 +81,7 @@ function startGame() {
 // ********************************************************************
 for (let i = 0; i < totalImages; i++) {
     const img = new Image();
-    img.src = `assets/${i}.png`; // Asegúrate de que las imágenes existan
+    img.src = `assets/${i}.png`;
     
     img.onload = () => {
         loadedCount++;

@@ -147,7 +147,7 @@ class Game {
 
     // game.js - Función Corregida de Colisión
     handleBrickCollision() {
-        // En lugar de this.ball.getCenter(), calculamos la fila y columna
+    
         // basándonos en la posición central de la pelota y el tamaño de la celda.
         const ballCenterX = this.ball.x;
         const ballCenterY = this.ball.y;
@@ -174,7 +174,6 @@ class Game {
                 this.mapMatrix.setValue(row, col, 0); 
                 this.score += 10; 
                 
-                // 💡 AÑADIR/ASEGURAR ESTA LLAMADA PARA LADRILLOS NORMALES 💡
                 this.soundManager.playSound('bounce'); // <-- Usamos BOUNCE para el normal
             }
             this.notifyHUD();
@@ -212,13 +211,6 @@ class Game {
         this.gameWin();
     }
 
-    // *** CONTROLES DE TECLADO ACTIVOS ***
-    // game.js - Método initControls() CORREGIDO Y COMPLETO
-
-// game.js - Método initControls() CORREGIDO Y COMPLETO
-
-// game.js - Método initControls() CORREGIDO Y COMPLETO
-
     initControls() {
         document.addEventListener("keydown", (e) => {
             // --- 1. Movimiento de Paleta (keydown) ---
@@ -234,24 +226,20 @@ class Game {
             if ((e.key === " " || e.key === "Enter") && this.ball.isStuck && this.lives > 0) { 
                 e.preventDefault(); 
                 
-                // 💡 Acción: Despausar y Lanzar 💡
+                //Acción: Despausar y Lanzar
                 this.isPaused = false; 
                 this.ball.launch(this.levelSpeed); 
                 
                 if (this.soundManager) {
                     this.soundManager.playSound('start_game');
                 }
-                // Si tienes un botón de inicio en pantalla, añade aquí el método para ocultarlo
-                // Ejemplo: this.uiManager.hideStartButton(); 
             }
             
             // --- 3. REINICIO (Enter solo si Game Over) ---
             // Condición: No quedan vidas (Game Over) Y se presiona Enter.
             if (e.key === "Enter" && this.lives <= 0) {
                 e.preventDefault(); 
-                this.resetGame(); // Llama a la función de reinicio completo
-                // Si tienes un botón de Reinicio/Game Over en pantalla, ocúltalo aquí
-                // Ejemplo: this.uiManager.hideGameOver(); 
+                this.resetGame();  
             }
 
         });
@@ -276,7 +264,7 @@ class Game {
     this.isPaused = true; 
     this.levelTransitionStartTime = 0;
 
-    // 💡 CRÍTICO: REINICIAR EL MAPA usando la COPIA PROFUNDA 💡
+    //CRÍTICO: REINICIAR EL MAPA usando la COPIA PROFUNDA
     // Esto asegura que el mapMatrix se llene con los valores originales (1, 2, 3...)
     this.mapMatrix.fillFromArray(JSON.parse(JSON.stringify(this.allMaps[0])));
         // 2. Reiniciar Objetos de Juego
@@ -289,14 +277,11 @@ class Game {
         this.notifyHUD();
     }
 
-    // game.js - NUEVA FUNCIÓN gameWin()
-
     gameWin() {
         // 1. Detener el juego
         this.isPaused = true;
         
         // 2. Mostrar mensaje de victoria (Usando el UIManager)
-        // Asumo que tu UIManager tiene un método para mostrar la pantalla de victoria
         this.uiManager.showGameWin(this.score); 
 
         //sonido de victoria
